@@ -1,0 +1,10 @@
+CREATE TABLE `myfirstmo$e01234567890123456789012345_01234567890123456789012345` (
+	`id` BIGINT NOT NULL,
+	`attribute` NVARCHAR(200) NULL,
+	PRIMARY KEY(`id`));
+
+INSERT INTO `mendixsystem$entity` (`id`, `entity_name`, `table_name`, `remote`, `remote_primary_key`) VALUES ('f330c4d1-d6c9-490c-8cc8-a6cbe03f8f30', 'MyFirstModule.E0123456789012345678901234567890123456789_0123456789012345678901234567890123456789', 'myfirstmo$e01234567890123456789012345_01234567890123456789012345', FALSE, FALSE);
+
+INSERT INTO `mendixsystem$attribute` (`id`, `entity_id`, `attribute_name`, `column_name`, `type`, `length`, `default_value`, `is_auto_number`) VALUES ('6cf9b67d-d75e-4971-8cff-3de80f4bdd58', 'f330c4d1-d6c9-490c-8cc8-a6cbe03f8f30', 'Attribute', 'attribute', 30, 200, '', FALSE);
+
+UPDATE `mendixsystem$version` SET `versionnumber` = '4.2', `lastsyncdate` = '20240924 14:40:27';

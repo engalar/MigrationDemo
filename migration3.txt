@@ -1,0 +1,34 @@
+CREATE TABLE `myfirstmodule$c0123456789012345678901234567890123456789` (
+	`id` BIGINT NOT NULL,
+	`attribute` NVARCHAR(200) NULL,
+	PRIMARY KEY(`id`));
+
+INSERT INTO `mendixsystem$entity` (`id`, `entity_name`, `table_name`, `remote`, `remote_primary_key`) VALUES ('1ffebc45-f5ea-4b21-8ee6-5424b12124e3', 'MyFirstModule.C0123456789012345678901234567890123456789', 'myfirstmodule$c0123456789012345678901234567890123456789', FALSE, FALSE);
+
+INSERT INTO `mendixsystem$attribute` (`id`, `entity_id`, `attribute_name`, `column_name`, `type`, `length`, `default_value`, `is_auto_number`) VALUES ('b96a7d97-642a-4fa0-a318-40f785df179f', '1ffebc45-f5ea-4b21-8ee6-5424b12124e3', 'Attribute', 'attribute', 30, 200, '', FALSE);
+
+CREATE TABLE `myfirstmo$c0123456789012345678901234_d01234567890123456789012345` (
+	`myfirstmodule$c0123456789012345678901234567890123456789id` BIGINT NOT NULL,
+	`myfirstmodule$d0123456789012345678901234567890123456789id` BIGINT NOT NULL,
+	PRIMARY KEY(`myfirstmodule$c0123456789012345678901234567890123456789id`,`myfirstmodule$d0123456789012345678901234567890123456789id`),
+	CONSTRAINT `uniq_myfir$c01234567890_d01234567890_myfirs$d0123456789012345678` UNIQUE (`myfirstmodule$d0123456789012345678901234567890123456789id`),
+	CONSTRAINT `uniq_myfir$c01234567890_d01234567890_myfirs$c0123456789012345678` UNIQUE (`myfirstmodule$c0123456789012345678901234567890123456789id`));
+
+CREATE INDEX `idx_myfirstm$c012345678901234567890123_d012345678901234567890123` ON `myfirstmo$c0123456789012345678901234_d01234567890123456789012345` (`myfirstmodule$d0123456789012345678901234567890123456789id` ASC,`myfirstmodule$c0123456789012345678901234567890123456789id` ASC);
+
+INSERT INTO `mendixsystem$association` (`id`, `association_name`, `table_name`, `parent_entity_id`, `child_entity_id`, `parent_column_name`, `child_column_name`, `index_name`) VALUES ('0b0720d1-bbbe-49b3-a239-ea943d15d83e', 'MyFirstModule.C0123456789012345678901234567890123456789_D0123456789012345678901234567890123456789', 'myfirstmo$c0123456789012345678901234_d01234567890123456789012345', '1ffebc45-f5ea-4b21-8ee6-5424b12124e3', 'faeb1e7d-48b6-4d4e-9a84-a5ebb82c9f9a', 'myfirstmodule$c0123456789012345678901234567890123456789id', 'myfirstmodule$d0123456789012345678901234567890123456789id', 'idx_myfirstm$c012345678901234567890123_d012345678901234567890123');
+
+INSERT INTO `mendixsystem$unique_constraint` (`name`, `table_id`, `column_id`) VALUES ('uniq_myfir$c01234567890_d01234567890_myfirs$d0123456789012345678', '0b0720d1-bbbe-49b3-a239-ea943d15d83e', '622b3267-ff71-3248-83ce-068fc713fa47');
+
+INSERT INTO `mendixsystem$unique_constraint` (`name`, `table_id`, `column_id`) VALUES ('uniq_myfir$c01234567890_d01234567890_myfirs$c0123456789012345678', '0b0720d1-bbbe-49b3-a239-ea943d15d83e', 'a8abbca9-ef83-3951-965f-80c22d25cff8');
+
+CREATE TABLE `myfirstmodule$d0123456789012345678901234567890123456789` (
+	`id` BIGINT NOT NULL,
+	`attribute` NVARCHAR(200) NULL,
+	PRIMARY KEY(`id`));
+
+INSERT INTO `mendixsystem$entity` (`id`, `entity_name`, `table_name`, `remote`, `remote_primary_key`) VALUES ('faeb1e7d-48b6-4d4e-9a84-a5ebb82c9f9a', 'MyFirstModule.D0123456789012345678901234567890123456789', 'myfirstmodule$d0123456789012345678901234567890123456789', FALSE, FALSE);
+
+INSERT INTO `mendixsystem$attribute` (`id`, `entity_id`, `attribute_name`, `column_name`, `type`, `length`, `default_value`, `is_auto_number`) VALUES ('55b2f662-3501-4ad3-a6c0-9f9049a2305d', 'faeb1e7d-48b6-4d4e-9a84-a5ebb82c9f9a', 'Attribute', 'attribute', 30, 200, '', FALSE);
+
+UPDATE `mendixsystem$version` SET `versionnumber` = '4.2', `lastsyncdate` = '20240924 14:37:37';

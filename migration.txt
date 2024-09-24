@@ -1,0 +1,45 @@
+ALTER TABLE `myfirstmodule$a01234567890123456789_b01234567890123456789` DROP INDEX `uniq_myfirstm$a012345678901_b012345678901_myfirstm$a012345678901`;
+
+ALTER TABLE `myfirstmodule$a01234567890123456789_b01234567890123456789` DROP INDEX `uniq_myfirstm$a012345678901_b012345678901_myfirstm$b012345678901`;
+
+DROP INDEX `idx_myfirstmodule$a01234567890123456789_b01234567890123456789` ON `myfirstmodule$a01234567890123456789_b01234567890123456789`;
+
+ALTER TABLE `myfirstmodule$a01234567890123456789` RENAME TO `myfirstmodule$a012345678901234567890123456789`;
+
+ALTER TABLE `myfirstmodule$a01234567890123456789_b01234567890123456789` RENAME TO `myfirstmodu$a012345678901234567890123_b0123456789012345678901234`;
+
+ALTER TABLE `myfirstmodule$b01234567890123456789` RENAME TO `myfirstmodule$b012345678901234567890123456789`;
+
+ALTER TABLE `myfirstmodule$a012345678901234567890123456789` ADD `attribute` NVARCHAR(200) NULL;
+
+UPDATE `mendixsystem$entity` SET `entity_name` = 'MyFirstModule.A012345678901234567890123456789', `table_name` = 'myfirstmodule$a012345678901234567890123456789', `superentity_id` = NULL, `remote` = FALSE, `remote_primary_key` = FALSE WHERE `id` = '1441614a-114d-4477-a5ff-5e7df576c695';
+
+INSERT INTO `mendixsystem$attribute` (`id`, `entity_id`, `attribute_name`, `column_name`, `type`, `length`, `default_value`, `is_auto_number`) VALUES ('d0032d82-090f-49f7-bb46-d0efd1554f66', '1441614a-114d-4477-a5ff-5e7df576c695', 'Attribute', 'attribute', 30, 200, '', FALSE);
+
+ALTER TABLE `myfirstmodu$a012345678901234567890123_b0123456789012345678901234` CHANGE `myfirstmodule$a01234567890123456789id` `myfirstmodule$a012345678901234567890123456789id` BIGINT NOT NULL;
+
+ALTER TABLE `myfirstmodu$a012345678901234567890123_b0123456789012345678901234` CHANGE `myfirstmodule$b01234567890123456789id` `myfirstmodule$b012345678901234567890123456789id` BIGINT NOT NULL;
+
+CREATE INDEX `idx_myfirstmodu$a0123456789012345678901_b01234567890123456789012` ON `myfirstmodu$a012345678901234567890123_b0123456789012345678901234` (`myfirstmodule$b012345678901234567890123456789id` ASC,`myfirstmodule$a012345678901234567890123456789id` ASC);
+
+ALTER TABLE `myfirstmodu$a012345678901234567890123_b0123456789012345678901234` ADD CONSTRAINT `uniq_myfirs$a012345678901_b012345678901_myfirst$a012345678901234` UNIQUE (`myfirstmodule$a012345678901234567890123456789id`);
+
+ALTER TABLE `myfirstmodu$a012345678901234567890123_b0123456789012345678901234` ADD CONSTRAINT `uniq_myfirs$a012345678901_b012345678901_myfirst$b012345678901234` UNIQUE (`myfirstmodule$b012345678901234567890123456789id`);
+
+DELETE FROM `mendixsystem$unique_constraint`  WHERE `name` = 'uniq_myfirstm$a012345678901_b012345678901_myfirstm$b012345678901' AND `column_id` = 'dbf56905-dc88-3385-81db-66502e8ac5a0';
+
+DELETE FROM `mendixsystem$unique_constraint`  WHERE `name` = 'uniq_myfirstm$a012345678901_b012345678901_myfirstm$a012345678901' AND `column_id` = 'da807523-73ba-331b-b0d4-372196ade553';
+
+INSERT INTO `mendixsystem$unique_constraint` (`name`, `table_id`, `column_id`) VALUES ('uniq_myfirs$a012345678901_b012345678901_myfirst$b012345678901234', 'e9ce5218-b157-4208-811a-f19b7c324eb2', 'dbf56905-dc88-3385-81db-66502e8ac5a0');
+
+INSERT INTO `mendixsystem$unique_constraint` (`name`, `table_id`, `column_id`) VALUES ('uniq_myfirs$a012345678901_b012345678901_myfirst$a012345678901234', 'e9ce5218-b157-4208-811a-f19b7c324eb2', 'da807523-73ba-331b-b0d4-372196ade553');
+
+UPDATE `mendixsystem$association` SET `association_name` = 'MyFirstModule.A012345678901234567890123456789_B012345678901234567890123456789', `table_name` = 'myfirstmodu$a012345678901234567890123_b0123456789012345678901234', `parent_entity_id` = '1441614a-114d-4477-a5ff-5e7df576c695', `child_entity_id` = '36aa7085-3102-4c53-9136-9804814999c8', `parent_column_name` = 'myfirstmodule$a012345678901234567890123456789id', `child_column_name` = 'myfirstmodule$b012345678901234567890123456789id', `pk_index_name` = NULL, `index_name` = 'idx_myfirstmodu$a0123456789012345678901_b01234567890123456789012' WHERE `id` = 'e9ce5218-b157-4208-811a-f19b7c324eb2';
+
+ALTER TABLE `myfirstmodule$b012345678901234567890123456789` ADD `attribute` NVARCHAR(200) NULL;
+
+UPDATE `mendixsystem$entity` SET `entity_name` = 'MyFirstModule.B012345678901234567890123456789', `table_name` = 'myfirstmodule$b012345678901234567890123456789', `superentity_id` = NULL, `remote` = FALSE, `remote_primary_key` = FALSE WHERE `id` = '36aa7085-3102-4c53-9136-9804814999c8';
+
+INSERT INTO `mendixsystem$attribute` (`id`, `entity_id`, `attribute_name`, `column_name`, `type`, `length`, `default_value`, `is_auto_number`) VALUES ('3fa083fe-2a0b-4e47-b571-fe3756bec24e', '36aa7085-3102-4c53-9136-9804814999c8', 'Attribute', 'attribute', 30, 200, '', FALSE);
+
+UPDATE `mendixsystem$version` SET `versionnumber` = '4.2', `lastsyncdate` = '20240924 14:27:21';

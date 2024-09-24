@@ -1,0 +1,46 @@
+version: "2.3"
+
+services:
+    mendixapp:
+        image: engalar/mendix-demo
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost"]
+            interval: 15s
+            retries: 2
+            start_period: 10s
+            timeout: 3s
+        environment:
+            ADMIN_PASSWORD: Password1!1234
+            MXRUNTIME_ApplicationRootUrl: https://localhost:8080
+            # MXRUNTIME_DatabaseJdbcUrl: mysql://db:3306/mendix
+            MXRUNTIME_DatabaseType: MySql
+            MXRUNTIME_DatabaseUserName: mendix
+            MXRUNTIME_DatabasePassword: mendix
+            MXRUNTIME_DatabaseHost: db:3306
+            MXRUNTIME_DatabaseName: mendix
+            MXRUNTIME_com.mendix.core.SessionIdCookieName: eg_mendix_session_id
+            # DATABASE_URL: mysql://mendix:mendix@db:3306/mendix
+            HEAP_SIZE: 2048M
+            MAX_METASPACE_SIZE: 1024M
+            JAVA_OPTS: '["-Xms512m", "-Xmx4g"]'  # 设置初始堆内存为 512MB，最大堆内存为 4GB
+        mem_limit: 4g  # 限制总内存使用为 4GB
+        # mem_limit: 2048m
+        #java -jar ./arthas/arthas-boot.jar $(cat /opt/mendix/build/.local/process.pid)
+        ports:
+            - 8080:8080
+            - 8090:8090
+        volumes:
+            - D:\arthas:/opt/mendix/build/arthas
+        links:
+            - db
+        # restart: always
+    db:
+        # image: mysql:5.7
+        image: mysql:8.0.35
+        environment:
+            - MYSQL_USER=mendix
+            - MYSQL_PASSWORD=mendix
+            - MYSQL_DATABASE=mendix
+            - MYSQL_ROOT_PASSWORD=root
+        ports:
+            - 3306:3306
